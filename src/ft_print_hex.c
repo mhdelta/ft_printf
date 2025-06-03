@@ -12,20 +12,18 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-int ft_hex_len(unsigned int n)
+int	ft_hex_len(unsigned int n)
 {
-	int i;
-	i = 0;
+	int	i;
 
+	i = 0;
 	if (n == 0)
 		return (1);
-
-	while(n != 0)
+	while (n != 0)
 	{
 		n /= 16;
 		i++;
 	}
-
 	return (i);
 }
 
@@ -36,7 +34,7 @@ void	ft_put_hex(unsigned int num, const char format)
 		ft_put_hex(num / 16, format);
 		ft_put_hex(num % 16, format);
 	}
-	else 
+	else
 	{
 		if (num <= 9)
 			ft_putchar_fd((num + '0'), 1);
@@ -48,7 +46,6 @@ void	ft_put_hex(unsigned int num, const char format)
 				ft_putchar_fd((num - 10 + 'A'), 1);
 		}
 	}
-
 }
 
 int	ft_print_hex(unsigned int n, const char c)
@@ -59,5 +56,5 @@ int	ft_print_hex(unsigned int n, const char c)
 	{
 		ft_put_hex(n, c);
 	}
-	return ft_hex_len(n);
+	return (ft_hex_len(n));
 }

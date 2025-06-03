@@ -9,12 +9,11 @@
 /*   Updated: 2025/05/27 20:24:50 by mhenao-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "ft_printf.h"
 
 int	ft_printchar(const char c)
 {
-	write(1, &c, 1);
+	write (1, &c, 1);
 	return (1);
 }
 
@@ -30,7 +29,7 @@ int	ft_printers(va_list args, const char c)
 	if (c == 'p')
 		count += ft_print_ptr(va_arg(args, unsigned long long));
 	if (c == 'd' || c == 'i')
-		 count += ft_printnbr(va_arg(args, int));
+		count += ft_printnbr(va_arg(args, int));
 	if (c == 'u')
 		count += ft_print_unsigned(va_arg(args, unsigned int));
 	if (c == 'x' || c == 'X')
@@ -42,21 +41,21 @@ int	ft_printers(va_list args, const char c)
 
 int	ft_printf(const char *str, ...)
 {
-	int	count;
-	int	i;
+	int		count;
+	int		i;
 	va_list	args;
 
 	va_start(args, str);
 	i = 0;
 	count = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '%')
 			count += ft_printers(args, str[++i]);
-		else 
-			count += ft_printchar(str[i]); 
+		else
+			count += ft_printchar(str[i]);
 		i++;
 	}
 	va_end(args);
-	return(count);
+	return (count);
 }
