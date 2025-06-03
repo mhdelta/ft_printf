@@ -14,8 +14,11 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	if (n == -INT_MIN)
-		ft_putstr_fd("-2147483648", fd);
+	if (n == INT_MIN)
+	{
+		write(fd, "-2147483648", 11);
+		return;
+	}
 	else if (n < 0)
 	{
 		ft_putchar_fd('-', fd);

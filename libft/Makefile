@@ -42,16 +42,19 @@ cBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(cBJ)
-	ar rcs $(NAME) $(cBJ)
-
-%c: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "libft compiled!"
+	@ar rcs $(NAME) $(cBJ)
+%.o: %.c
+	@echo "Compiling: $<"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(cBJ) $(cBJB)
+	@echo "libft objects cleaned"
+	@rm -f $(cBJ) $(cBJB)
 
 fclean: clean
-	rm -f $(NAME)
+	@echo "libft executables cleaned"
+	@rm -f $(NAME)
 
 re: fclean all
 

@@ -11,28 +11,45 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 void ft_putstr(char *str)
 {
-	while(str)
-		write(1, str, 1);
+	while(*str)
+		write(1, str++, 1);
 }
 
-int	ft_printstr(char * s)
+int	ft_printstr(char *s)
 {
-	return 1;
-}
-int ft_num_len(unsigned int num)
-{
-	return 1;
-}
-int ft_printnbr(int n)
-{
-	return 1;
+	int	i;
+	i = 0;
+
+	if (!s)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
+
+	while (s[i])
+	{	
+		write(1, &s[i], 1);
+		i++;
+	}
+	return (i);
 }
 
-char  *ft_uitoa(unsigned int n)
+int	ft_printnbr(int n)
 {
-	return 1;
+	int	len;
+	char *num;
+
+	len = 0;
+
+	num = ft_itoa(n);
+	len = ft_num_len(n);
+
+	len = ft_printstr(num);
+	free(num);
+	return (len);
 }
 

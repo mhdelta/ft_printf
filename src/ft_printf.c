@@ -27,6 +27,8 @@ int	ft_printers(va_list args, const char c)
 		count += ft_printchar(va_arg(args, int));
 	if (c == 's')
 		count += ft_printstr(va_arg(args, char *));
+	if (c == 'p')
+		count += ft_print_ptr(va_arg(args, unsigned long long));
 	if (c == 'd' || c == 'i')
 		 count += ft_printnbr(va_arg(args, int));
 	if (c == 'u')
@@ -50,7 +52,7 @@ int	ft_printf(const char *str, ...)
 	while(str[i])
 	{
 		if (str[i] == '%')
-			count += ft_printers(args, str[i++]);
+			count += ft_printers(args, str[++i]);
 		else 
 			count += ft_printchar(str[i]); 
 		i++;
